@@ -11,7 +11,7 @@ public class KnightController : MonoBehaviour
     
     private Rigidbody2D _rigidbody2D;
     private float _horizontalInput;
-
+    private float _verticalInput;
     void Awake()
     {  
         Instance = this;
@@ -21,7 +21,7 @@ public class KnightController : MonoBehaviour
     void Update()
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
-
+        _verticalInput = Input.GetAxisRaw("Vertical");
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
@@ -31,6 +31,7 @@ public class KnightController : MonoBehaviour
     void FixedUpdate()
     {
         float horizontalInput = _horizontalInput;
+        float verticalInput = _verticalInput;
         if (!(horizontalInput == 0))
         {
             spriteRenderer.flipX = horizontalInput < 0f;
@@ -42,6 +43,16 @@ public class KnightController : MonoBehaviour
         {
             animator.SetBool("isRunning", false);
         }
+
+        if (verticalInput < 0)
+        {
+            animator.SetBool("isRolling", true);
+        }
+        else
+        {
+            animator.SetBool("isRolling", false);
+        }
+
     }
 
     void Jump()
