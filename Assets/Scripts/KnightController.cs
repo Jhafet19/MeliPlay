@@ -7,11 +7,14 @@ public class KnightController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public float runningSpeed = 5f;
     public float jumpForce = 5f;
+    public LayerMask groundLayer;
+    
     public static KnightController Instance;
     
     private Rigidbody2D _rigidbody2D;
     private float _horizontalInput;
     private float _verticalInput;
+    
     void Awake()
     {  
         Instance = this;
@@ -31,14 +34,19 @@ public class KnightController : MonoBehaviour
     void FixedUpdate()
     {
         float horizontalInput = _horizontalInput;
+        
         float verticalInput = _verticalInput;
+        
         if (!(horizontalInput == 0))
         {
             spriteRenderer.flipX = horizontalInput < 0f;
             
             var targetVelocityX = horizontalInput * runningSpeed;
+
             _rigidbody2D.linearVelocity = new Vector2(targetVelocityX, _rigidbody2D.linearVelocity.y);
+                
             animator.SetBool("isRunning", true);
+            
         }else
         {
             animator.SetBool("isRunning", false);
@@ -57,7 +65,20 @@ public class KnightController : MonoBehaviour
 
     void Jump()
     {
+        if (!IsTouchingTheGround()) return;
         _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+    
+    bool IsTouchingTheGround()
+    {
+        if (Physics2D.Raycast(transform.position, 
+                Vector2.down, 
+                1f, 
+                groundLayer))
+        {
+            return true;
+        }
+        return false;
     }
 
 }
