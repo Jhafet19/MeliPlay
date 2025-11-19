@@ -159,13 +159,76 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 819206972012060974, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232281092098476410, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210737608980577189, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436985838033387905, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 819206972012060974, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7016535090126904713}
+    - targetCorrespondingSourceObject: {fileID: 819206972012060974, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7416572371009400905}
   m_SourcePrefab: {fileID: 100100000, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
 --- !u!4 &3743608029939340204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 509072303977483932, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
   m_PrefabInstance: {fileID: 3810996615737826608}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4592837492524825630 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 819206972012060974, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+  m_PrefabInstance: {fileID: 3810996615737826608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7016535090126904713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592837492524825630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec8634c9e78dbe469ec85c975c5f126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractSystem
+  detectionDistance: 1
+  boxLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  joint: {fileID: 7416572371009400905}
+--- !u!255 &7416572371009400905
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592837492524825630}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 5.92}
+  m_DampingRatio: 0
+  m_Frequency: 0
