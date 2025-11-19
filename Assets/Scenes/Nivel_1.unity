@@ -478,11 +478,28 @@ PrefabInstance:
       propertyPath: rollingOffset.y
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 6248610737797032569, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -7.90888
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248610737797032569, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.72242975
+      objectReference: {fileID: 0}
     - target: {fileID: 6335742212861123860, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7416572371009400905, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -7.90888
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416572371009400905, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.72242975
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6248610737797032569, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2222,7 +2239,7 @@ GameObject:
   - component: {fileID: 1919784504}
   m_Layer: 6
   m_Name: Caja
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2326,7 +2343,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!61 &1919784505
 BoxCollider2D:
   m_ObjectHideFlags: 0

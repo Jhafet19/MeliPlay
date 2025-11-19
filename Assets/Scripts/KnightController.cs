@@ -13,7 +13,7 @@ public class KnightController : MonoBehaviour
     public float jumpForce = 5f;
     [Header("Layer de Suelo")]
     public LayerMask groundLayer;
-    
+    [HideInInspector] public bool isGrabbingBox = false;
 
     
     public static KnightController Instance;
@@ -28,12 +28,11 @@ public class KnightController : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-void Update()
+    void Update()
     {
         // Inputs
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
-        bool jumpInput = Input.GetKeyDown(KeyCode.Space);
 
         // 1. DETECCIÓN DE INTENCIÓN DE RODAR
         if (verticalInput < 0 && IsTouchingTheGround())
@@ -55,7 +54,7 @@ void Update()
         {
             // Comportamiento normal
             HandleNormalMovement(horizontalInput);
-            if (jumpInput) Jump();
+            if (Input.GetKeyDown(KeyCode.Space) && !isGrabbingBox) Jump();
         }
     }
 
