@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 6509e287dc751df40af997c2c43f0b74
+guid: 91b7e288673d6814691d8c8b1bbb77e5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8668762832445863736
-    second: desertDungeon__0
-  - first:
-      213: 8162356017988039699
-    second: desertDungeon__1
-  - first:
-      213: 88949559894436516
-    second: desertDungeon__2
-  - first:
-      213: 2343724486634000775
-    second: desertDungeon__3
-  - first:
-      213: 4305155347993556113
-    second: desertDungeon__4
+      213: -1903971155361192243
+    second: dungeon_ 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,99 +100,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: desertDungeon__0
+      name: dungeon_ 1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 106
-        width: 96
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c884f9022e52b780800000000000000
-      internalID: -8668762832445863736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: desertDungeon__1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 84
-        width: 96
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 314f2766d83864170800000000000000
-      internalID: 8162356017988039699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: desertDungeon__2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 68
-        width: 96
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4aa6f6847230c3100800000000000000
-      internalID: 88949559894436516
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: desertDungeon__3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 52
-        width: 96
-        height: 13
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7815435c005968020800000000000000
-      internalID: 2343724486634000775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: desertDungeon__4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
+        y: 128
         width: 16
         height: 16
       alignment: 0
@@ -215,36 +115,234 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1947704bafbfebb30800000000000000
-      internalID: 4305155347993556113
+      spriteID: dc62b16625cb395e0800000000000000
+      internalID: -1903971155361192243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: desertDungeon__5
+      name: dungeon_ 1_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 32
+        y: 128
         width: 32
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81c3d1f46aa3d3d45877537c7c4e654d
-      internalID: -50215200
+      spriteID: 1b43b1a9e71f03b4bab0014624c292e9
+      internalID: -1196672290
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: desertDungeon__6
+      name: dungeon_ 1_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 107
+        width: 48
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c774de37eae29b4dacdc478bef901c3
+      internalID: -1183383473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 107
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe1399dd2f9dfc2459d81a56e883e76a
+      internalID: 300151526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_4
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 107
+        width: 32
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4a21b386292d44e8d0786635459ed5
+      internalID: -309745551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d419cf954a3e341bc3fc33f831c9bd
+      internalID: 1739135651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_6
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 96
+        width: 32
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84b3c6b4c00d7c14e99fb27bb96da776
+      internalID: -2016205607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 48
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b114784d15610874f8e7f301bef2f902
+      internalID: 1665685262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a634f0d591fed458ff5f8b37d610a4
+      internalID: 763741338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dedeebcf58eb3094e9bf5a8bc52f526e
+      internalID: 1881198662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7148de50b46e69343ab4bddd7dc1eb71
+      internalID: 452966832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dungeon_ 1_11
       rect:
         serializedVersion: 2
         x: 48
@@ -252,28 +350,6 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6d12f26c66f93346a7eba1c860284e6
-      internalID: 1155140709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: desertDungeon__7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 32
-      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -281,30 +357,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80673b9ded514594c86f62e36cc11f4c
-      internalID: 969191372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: desertDungeon__8
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 764b7bb0d8ac4774984dd538f4247975
-      internalID: -432536828
+      spriteID: ada45800f7ff7674f9fdce145e66d34a
+      internalID: 2068440443
       vertices: []
       indices: 
       edges: []
@@ -313,7 +367,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: cba3b51f342114d4fbfda040d1847aa2
+    spriteID: 6de9772846a579e45a420775ecdcffa7
     internalID: 0
     vertices: []
     indices: 
@@ -323,15 +377,18 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      desertDungeon__0: -8668762832445863736
-      desertDungeon__1: 8162356017988039699
-      desertDungeon__2: 88949559894436516
-      desertDungeon__3: 2343724486634000775
-      desertDungeon__4: 4305155347993556113
-      desertDungeon__5: -50215200
-      desertDungeon__6: 1155140709
-      desertDungeon__7: 969191372
-      desertDungeon__8: -432536828
+      dungeon_ 1_0: -1903971155361192243
+      dungeon_ 1_1: -1196672290
+      dungeon_ 1_10: 452966832
+      dungeon_ 1_11: 2068440443
+      dungeon_ 1_2: -1183383473
+      dungeon_ 1_3: 300151526
+      dungeon_ 1_4: -309745551
+      dungeon_ 1_5: 1739135651
+      dungeon_ 1_6: -2016205607
+      dungeon_ 1_7: 1665685262
+      dungeon_ 1_8: 763741338
+      dungeon_ 1_9: 1881198662
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

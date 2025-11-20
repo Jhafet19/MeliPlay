@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    public int maxHealth = 3;
     public float currentHealth;
     public UnityEvent<float, float> onHealthChange;
     public UnityEvent onDeath;
@@ -28,11 +28,14 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        var hitbox = other.GetComponent<Hitbox>();
-        if (!hitbox) return;
-        TakeDamage(hitbox.damage);
+        var hitbox = other.gameObject.GetComponent<Hitbox>();
+        if (hitbox) 
+        {
+            TakeDamage(hitbox.damage);
+            KnightController.Instance.GetHit(other.transform.position);
+        }
     }
 }
 

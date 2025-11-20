@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class KnightController : MonoBehaviour
 {
+    [Header("Configuración de Daño")]
+    public float knockbackForce = 10f;
+    public float stunTime = 0.5f;
+    private bool _isHurt = false; 
     [Header("Configuracion de Componentes")]
     public Animator animator;
     public SpriteRenderer spriteRenderer;
@@ -30,6 +34,7 @@ public class KnightController : MonoBehaviour
 
     void Update()
     {
+        if (_isHurt) return;
         // Inputs
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
@@ -132,5 +137,27 @@ public class KnightController : MonoBehaviour
         );
 
         return hit.collider != null;
+    }
+    
+    public void GetHit(Vector2 directionOfHit)
+    {
+        if (_isHurt) return; 
+        _isHurt = true;
+        animator.SetBool("isHit", true);
+
+        _rigidbody2D.linearVelocity = Vector2.zero; 
+        Vector2 knockbackDirection = (transform.position - (Vector3)directionOfHit).normalized;
+        
+        Vector2 finalForce = new Vector2(knockbackDirection.x, 0.5f) * knockbackForce;
+        
+        _rigidbody2D.AddForce(finalForce, ForceMode2D.Impulse);
+
+        Invoke("RecoverFromHit", stunTime);
+    }
+    
+    void RecoverFromHit()
+    {
+        _isHurt = false;
+        animator.SetBool("isHit", false);
     }
 }
