@@ -15,7 +15,7 @@ public class HealthUI : MonoBehaviour
         {
             var instance = Instantiate(heartIconPrefab, heartIconContainer);
             heartIcons.Add(instance);
-            instance.SetActive(false);
+            instance.SetActive(true);
         }
     }
 

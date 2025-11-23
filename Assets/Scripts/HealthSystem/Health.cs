@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Max(currentHealth - damage, 0);
         onHealthChange?.Invoke(currentHealth, maxHealth); // para UI
         Debug.Log($"Current health: {currentHealth}");
-        if (currentHealth == 0) onDeath?.Invoke(); // para GameOver
+        if (currentHealth == 0) onDeath?.Invoke();
     }
 
     public void Heal(float amount)
