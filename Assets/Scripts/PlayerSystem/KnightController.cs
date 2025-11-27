@@ -1,24 +1,34 @@
 using System;
 using UnityEngine;
 
+// 1. Requerimos AudioSource para que suene
+[RequireComponent(typeof(AudioSource))]
 public class KnightController : MonoBehaviour
 {
     [Header("Configuración de Daño")]
     public float knockbackForce = 10f;
     public float stunTime = 0.5f;
     private bool _isHurt = false; 
+    
     [Header("Configuracion de Componentes")]
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public Collider2D standingCollider;
     public Collider2D rollingCollider; 
+    
     [Header("Parametros de Movimiento")]
     public float runningSpeed = 5f;
     public float jumpForce = 5f;
+    
     [Header("Layer de Suelo")]
     public LayerMask groundLayer;
     [HideInInspector] public bool isGrabbingBox = false;
 
+    // --- NUEVO: Variable de Audio ---
+    [Header("Audio SFX")]
+    public AudioClip jumpSound; 
+    private AudioSource _audioSource; 
+    // -------------------------------
     
     public static KnightController Instance;
     
@@ -30,34 +40,34 @@ public class KnightController : MonoBehaviour
     {  
         Instance = this;
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        // Obtenemos el AudioSource del personaje
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (_isHurt) return;
-        // Inputs
+        
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
         // 1. DETECCIÓN DE INTENCIÓN DE RODAR
         if (verticalInput < 0 && IsTouchingTheGround())
         {
-            if (!_isRolling) StartRoll(); // Si no estaba rodando, empieza
+            if (!_isRolling) StartRoll(); 
         }
         else
         {
-            if (_isRolling) EndRoll(); // Si suelta, termina
+            if (_isRolling) EndRoll(); 
         }
 
         // 2. MOVIMIENTO Y SALTO
         if (_isRolling)
         {
-            // Comportamiento al rodar
             HandleRollingMovement(horizontalInput);
         }
         else
         {
-            // Comportamiento normal
             HandleNormalMovement(horizontalInput);
             if (Input.GetKeyDown(KeyCode.Space) && !isGrabbingBox) Jump();
         }
@@ -100,12 +110,10 @@ public class KnightController : MonoBehaviour
         if (xInput != 0)
         {
              spriteRenderer.flipX = xInput < 0;
-            // Misma velocidad o reducida
             _rigidbody2D.linearVelocity = new Vector2(xInput * runningSpeed, _rigidbody2D.linearVelocity.y);
         }
         else
         {
-             // Si no se mueve, se queda quieto agachado
              _rigidbody2D.linearVelocity = new Vector2(0, _rigidbody2D.linearVelocity.y);
         }
     }
@@ -115,18 +123,19 @@ public class KnightController : MonoBehaviour
         if (IsTouchingTheGround())
         {
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            
+            // --- NUEVO: Reproducir sonido de salto ---
+            if(jumpSound != null && _audioSource != null)
+                _audioSource.PlayOneShot(jumpSound);
         }
     }
 
     
     bool IsTouchingTheGround()
     {
-        // Usamos el collider que esté activo en ese momento
         Collider2D currentCol = _isRolling ? rollingCollider : standingCollider;
-        
         float extraHeight = 0.1f;
         
-        // Lanzamos un BoxCast o Raycast desde el centro del collider activo
         RaycastHit2D hit = Physics2D.BoxCast(
             currentCol.bounds.center, 
             currentCol.bounds.size, 
