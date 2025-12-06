@@ -476,6 +476,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 870779515752803443, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5fa452ef4d8c0b240b37d33abca1ea52, type: 3}
+    - target: {fileID: 870779515752803443, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
       propertyPath: rollingSize.y
       value: 0.2
       objectReference: {fileID: 0}
@@ -499,6 +503,10 @@ PrefabInstance:
       propertyPath: groundLayer.m_Bits
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 2849926552068935748, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
+      propertyPath: hurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 832a6543dff467842ab24565b5706bcb, type: 3}
     - target: {fileID: 2849926552068935748, guid: 7def3ee4c745f164e9c5e453b7a68104, type: 3}
       propertyPath: maxHealth
       value: 3
