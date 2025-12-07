@@ -6,7 +6,7 @@ using UnityEngine;
 public class KnightController : MonoBehaviour
 {
     [Header("Configuración de Daño")]
-    public float knockbackForce = 10f;
+    public float knockbackForce = 5f;
     public float stunTime = 0.5f;
     private bool _isHurt = false; 
     
@@ -24,24 +24,37 @@ public class KnightController : MonoBehaviour
     public LayerMask groundLayer;
     [HideInInspector] public bool isGrabbingBox = false;
 
-    // --- NUEVO: Variable de Audio ---
     [Header("Audio SFX")]
-    public AudioClip jumpSound; 
+    public AudioClip jumpSound;
+    public AudioClip stepSound;
     private AudioSource _audioSource; 
-    // -------------------------------
     
     public static KnightController Instance;
     
     private Rigidbody2D _rigidbody2D;
     private bool _isRolling = false;
 
-    
+
+    void OnEnable()
+    {
+        EventManager.Subscribe(GlobalEvents.OnPlayerDeath, Die);
+    }
+
+    void OnDisable()
+    {
+        EventManager.Unsubscribe(GlobalEvents.OnPlayerDeath, Die);
+    }
+
     void Awake()
     {  
         Instance = this;
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        // Obtenemos el AudioSource del personaje
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    void Start()
+    {
+        animator.SetBool("isDeath", false);
     }
 
     void Update()
@@ -72,8 +85,7 @@ public class KnightController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && !isGrabbingBox) Jump();
         }
     }
-
-
+    
     void StartRoll()
     {
         _isRolling = true;
@@ -95,7 +107,9 @@ public class KnightController : MonoBehaviour
         if (xInput != 0)
         {
             spriteRenderer.flipX = xInput < 0;
-            _rigidbody2D.linearVelocity = new Vector2(xInput * runningSpeed, _rigidbody2D.linearVelocity.y);
+            float currentSpeed = runningSpeed;
+            if (isGrabbingBox) currentSpeed = runningSpeed * 0.5f;
+            _rigidbody2D.linearVelocity = new Vector2(xInput * currentSpeed, _rigidbody2D.linearVelocity.y);
             animator.SetBool("isRunning", true);
         }
         else
@@ -124,12 +138,10 @@ public class KnightController : MonoBehaviour
         {
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             
-            // --- NUEVO: Reproducir sonido de salto ---
             if(jumpSound != null && _audioSource != null)
                 _audioSource.PlayOneShot(jumpSound);
         }
     }
-
     
     bool IsTouchingTheGround()
     {
@@ -169,4 +181,17 @@ public class KnightController : MonoBehaviour
         _isHurt = false;
         animator.SetBool("isHit", false);
     }
+    
+    void Die(){
+        _isHurt = true;
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        animator.SetBool("isDeath", true);
+    }
+    
+    public void PlayStepSound()
+    {
+        if (!IsTouchingTheGround()) return;
+        if(stepSound != null && _audioSource != null)
+            _audioSource.PlayOneShot(stepSound);
+    }   
 }

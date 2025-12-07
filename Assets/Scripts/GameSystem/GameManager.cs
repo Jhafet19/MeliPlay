@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour, IGameMachine
@@ -16,11 +17,10 @@ public class GameManager : MonoBehaviour, IGameMachine
 
     private void Awake()
     {
-        // --- PATRÓN SINGLETON (Para que no se destruya entre escenas) ---
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ¡Esto hace la magia!
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -62,24 +62,27 @@ public class GameManager : MonoBehaviour, IGameMachine
     }
 }
 
-// --- ESTADOS (Clases, no Structs) ---
-
 public class MainMenuGame : IGame
 {
     private GameManager _gm;
+    private const string FirstLevelName = "Nivel_1";
+    
     public MainMenuGame(GameManager gameManager) => _gm = gameManager;
 
     public void Enter()
     {
-        Debug.Log("Estado: Menú Principal");
-        _gm.PlayMusic(_gm.MenuMusic); // Pone música de menú
+        _gm.PlayMusic(_gm.MenuMusic);
+        if (SceneManager.GetActiveScene().name != "Menu")
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     public void Tick(float deltaTime)
     {
         // Presiona P para jugar
         if (Input.GetKeyDown(KeyCode.P)) 
-            _gm.ChangeState(new PlayGame(_gm));
+            _gm.ChangeState(new PlayGame(_gm, FirstLevelName));
     }
     
     public void Exit() { }
@@ -88,58 +91,87 @@ public class MainMenuGame : IGame
 public class PlayGame : IGame
 {
     private GameManager _gm;
-    public PlayGame(GameManager gameManager) => _gm = gameManager;
+    private string _sceneToLoad;
+    
+    public PlayGame(GameManager gameManager, string sceneName)
+    {
+        _gm = gameManager;
+        _sceneToLoad = sceneName;
+    }
 
     public void Enter()
     {
-        Debug.Log("Estado: Jugando");
-        _gm.PlayMusic(_gm.GameplayMusic); // Pone música de juego
+        _gm.PlayMusic(_gm.GameplayMusic);
+        if (!string.IsNullOrEmpty(_sceneToLoad) && SceneManager.GetActiveScene().name != _sceneToLoad)
+        {
+            SceneManager.LoadScene(_sceneToLoad);
+        }
+        EventManager.Subscribe(GlobalEvents.OnPlayerDeath, OnDeath);
     }
 
     public void Tick(float deltaTime)
     {
-        // E -> Game Over
-        if (Input.GetKeyDown(KeyCode.E)) 
-            _gm.ChangeState(new GameOverGame(_gm));
-            
         // ESC -> Pausa
         if (Input.GetKeyDown(KeyCode.Escape)) 
-            _gm.ChangeState(new PauseMenuGame(_gm));
+            _gm.ChangeState(new PauseMenuGame(_gm, _sceneToLoad));
+    }
+
+    public void Exit()
+    {
+        EventManager.Unsubscribe(GlobalEvents.OnPlayerDeath, OnDeath);
     }
     
-    public void Exit() { }
+    private void OnDeath()
+    {
+        _gm.ChangeState(new GameOverGame(_gm, _sceneToLoad));
+    }
 }
 
 public class PauseMenuGame : IGame
 {
     private GameManager _gm;
-    public PauseMenuGame(GameManager gameManager) => _gm = gameManager;
+    private string _sceneToLoad;
+    
+    public PauseMenuGame(GameManager gameManager, string sceneName)
+    {
+        _gm = gameManager;
+        _sceneToLoad = sceneName;
+    }
 
     public void Enter()
     {
-        Debug.Log("Estado: Pausa");
-        // No cambiamos música aquí para dejar la de fondo
+        Time.timeScale = 0f;
+        EventManager.Invoke(GlobalEvents.OnGamePause);
     }
     
     public void Tick(float deltaTime)
     {
         // R -> Volver a jugar (resume)
         if (Input.GetKeyDown(KeyCode.R)) 
-            _gm.ChangeState(new PlayGame(_gm));
+            _gm.ChangeState(new PlayGame(_gm, ""));
     }
-    
-    public void Exit() { }
+
+    public void Exit()
+    {
+        EventManager.Invoke(GlobalEvents.OnGameResume);
+    }
 }
 
 public class GameOverGame : IGame
 {
     private GameManager _gm;
-    public GameOverGame(GameManager gameManager) => _gm = gameManager;
+    private string _sceneToLoad;
+    
+    public GameOverGame(GameManager gameManager, string sceneName)
+    {
+        _gm = gameManager;
+        _sceneToLoad = sceneName;
+    }
 
     public void Enter()
     {
-        Debug.Log("Estado: Game Over");
-        _gm.PlayMusic(_gm.GameOverMusic); // Música triste
+        _gm.PlayMusic(_gm.GameOverMusic);
+        EventManager.Invoke(GlobalEvents.OnGameOver);
     }
     
     public void Tick(float deltaTime)

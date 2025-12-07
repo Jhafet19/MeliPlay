@@ -2,23 +2,32 @@ using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
-    public static PointManager Instance;
+    [SerializeField] private int totalPoints = 0;
 
-    private int totalPoints = 0;
-
-    private void Awake()
+    private void OnEnable()
     {
-        Instance = this;
+        // Nos suscribimos para escuchar cuando alguien da puntos
+        EventManager.Subscribe<int>(GlobalEvents.OnAddPoints, AddPoints);
     }
 
-    public void AddPoints(int amount)
+    private void OnDisable()
     {
-        totalPoints += amount;
-        UIManager.Instance.UpdateScore(totalPoints);
+        EventManager.Unsubscribe<int>(GlobalEvents.OnAddPoints, AddPoints);
     }
 
-    public int GetPoints()
+    private void AddPoints(int amount)
+        {
+            totalPoints += amount;
+            
+            Debug.Log($"Puntos sumados: {amount}. Total: {totalPoints}");
+            // CAMBIO: En vez de buscar al UIManager, lanzamos un aviso general
+            // "¡Atención mundo! El puntaje nuevo es 'totalPoints'"
+            EventManager.Invoke<int>(GlobalEvents.OnScoreChanged, totalPoints);
+        }
+
+    public void ResetPoints()
     {
-        return totalPoints;
+        totalPoints = 0;
+        EventManager.Invoke<int>(GlobalEvents.OnScoreChanged, totalPoints);
     }
 }

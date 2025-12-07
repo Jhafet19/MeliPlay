@@ -1,5 +1,12 @@
 ﻿public enum GlobalEvents
 {
     OnDoorOpen,
-    OnDoorClose
+    OnDoorClose,
+    OnAddPoints,
+    OnScoreChanged,
+    OnPlayerHealthChanged,
+    OnPlayerDeath,
+    OnGamePause,
+    OnGameResume,
+    OnGameOver
 }

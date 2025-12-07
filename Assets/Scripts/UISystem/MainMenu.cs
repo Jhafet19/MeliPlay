@@ -3,12 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //Meliplay
-    [SerializeField] private string gameScene;
+    [SerializeField] private string gameScene = "Nivel_1";
 
     public void StartGame()
     {
-        SceneManager.LoadScene(gameScene);
+        GameManager.Instance.ChangeState(new PlayGame(GameManager.Instance, gameScene));
     }
 }

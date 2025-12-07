@@ -13,7 +13,7 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PointManager.Instance.AddPoints(points);
+            EventManager.Invoke<int>(GlobalEvents.OnAddPoints, points);
             gameObject.SetActive(false);
         }
     }

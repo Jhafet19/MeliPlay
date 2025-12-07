@@ -6,9 +6,20 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
     private static readonly Dictionary<GlobalEvents, List<Delegate>> Events = new();
+    
+    private static bool initialized = false;
 
     private void Awake()
     {
+        if (initialized)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        initialized = true;
+        DontDestroyOnLoad(gameObject);
+        
         foreach (var eventName in Enum.GetValues(typeof(GlobalEvents)))
         {
             Events.Add((GlobalEvents)eventName, new List<Delegate>());
@@ -37,7 +48,11 @@ public class EventManager : MonoBehaviour
     
     public static void Invoke<T>(GlobalEvents globalEvent, T value = default)
     {
-        foreach (var @delegate in Events[globalEvent])
+        if (!Events.ContainsKey(globalEvent)) return;
+
+        var listenersCopy = new List<Delegate>(Events[globalEvent]);
+
+        foreach (var @delegate in listenersCopy)
         {
             switch (@delegate)
             {
@@ -47,11 +62,16 @@ public class EventManager : MonoBehaviour
             }
         }
     }
-    
+
     public static void Invoke(GlobalEvents globalEvent)
     {
-        foreach (var @delegate in Events[globalEvent])
-            if (@delegate is Action action)
-                action.Invoke();
+        if (!Events.ContainsKey(globalEvent)) return;
+
+        var listenersCopy = new List<Delegate>(Events[globalEvent]);
+
+        foreach (var @delegate in listenersCopy) 
+        {
+            if (@delegate is Action action) action.Invoke();
+        }
     }
 }
