@@ -5,13 +5,17 @@ public class Door : MonoBehaviour
 {
    [Header("Configuracion")] 
    public int myID = 1;
-
+   public string nextLevelName = "Nivel_2"; // Escribe aquí el nombre EXACTO de tu escena
+   private bool _isOpen = false;
+   private Animator _animator;
+   
    [Header("Imágenes")]
    public Sprite closedSprite;
    public Sprite openSprite;
     
    [Header("Componentes")]
    public SpriteRenderer spriteRenderer;
+   public LayerMask playerLayer;
    private BoxCollider2D _collider; 
 
    private void Awake()
@@ -36,8 +40,9 @@ public class Door : MonoBehaviour
    {
       if (idReceived == myID)
       {
-         spriteRenderer.sprite = openSprite;
-         _collider.enabled = false;
+         spriteRenderer.sprite = openSprite; 
+         _collider.isTrigger = true;
+         _isOpen = true;
       }
    }
 
@@ -46,7 +51,19 @@ public class Door : MonoBehaviour
       if (idReceived == myID)
       {
          spriteRenderer.sprite = closedSprite;
-         _collider.enabled = true;
+         _collider.isTrigger = false;
+         _isOpen = false;
+      }
+   }
+   
+   private void OnTriggerEnter2D(Collider2D other)
+   {
+      Debug.Log("Algo tocó la puerta: " + other.name);
+      // Verifica si la puerta está abierta y si el objeto que entra en colisión es el jugador
+      if (_isOpen && (playerLayer.value & (1 << other.gameObject.layer)) > 0)
+      {
+         Debug.Log("¡Nivel Completado!");
+         EventManager.Invoke(GlobalEvents.OnLevelComplete, nextLevelName);
       }
    }
 }

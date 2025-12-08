@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2015680895620567857}
   - component: {fileID: 4104679629538013507}
   - component: {fileID: 420716359731574979}
-  m_Layer: 0
+  - component: {fileID: 4123239199668595449}
+  m_Layer: 7
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,10 +85,13 @@ MonoBehaviour:
   rollingCollider: {fileID: 4056178274462501118}
   runningSpeed: 5
   jumpForce: 5
+  isGrabbingBox: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  isGrabbingBox: 0
+  objectLayer:
+    serializedVersion: 2
+    m_Bits: 0
   jumpSound: {fileID: 0}
   stepSound: {fileID: 0}
 --- !u!82 &420716359731574979
@@ -187,6 +191,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4123239199668595449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 819206972012060974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3406c883a3cc14d4e97e2732fde0f21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  currentHealth: 0
+  onHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  hurtSound: {fileID: 0}
 --- !u!1 &1232281092098476410
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8476362887296716553}
   - component: {fileID: 2164123959868731258}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StandingCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2617787333258814577}
   - component: {fileID: 4056178274462501118}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RollingCol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +361,7 @@ GameObject:
   - component: {fileID: 3992711131003402305}
   - component: {fileID: 7297307880129603770}
   - component: {fileID: 6592280675999621574}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

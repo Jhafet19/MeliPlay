@@ -107,6 +107,7 @@ public class PlayGame : IGame
             SceneManager.LoadScene(_sceneToLoad);
         }
         EventManager.Subscribe(GlobalEvents.OnPlayerDeath, OnDeath);
+        EventManager.Subscribe<string>(GlobalEvents.OnLevelComplete, OnVictory);
     }
 
     public void Tick(float deltaTime)
@@ -119,11 +120,17 @@ public class PlayGame : IGame
     public void Exit()
     {
         EventManager.Unsubscribe(GlobalEvents.OnPlayerDeath, OnDeath);
+        EventManager.Unsubscribe<string>(GlobalEvents.OnLevelComplete, OnVictory);
     }
     
     private void OnDeath()
     {
         _gm.ChangeState(new GameOverGame(_gm, _sceneToLoad));
+    }
+    
+    public void OnVictory(string nextLevelName)
+    {
+        _gm.ChangeState(new PlayGame(_gm, nextLevelName));
     }
 }
 
