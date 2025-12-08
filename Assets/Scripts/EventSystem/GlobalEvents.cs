@@ -2,11 +2,14 @@
 {
     OnDoorOpen,
     OnDoorClose,
-    OnAddPoints,
-    OnScoreChanged,
+    OnAddCoins,
+    OnScoreCoinChanged,
+    OnAddFruits,
+    OnScoreFruitChanged,
     OnPlayerHealthChanged,
     OnPlayerDeath,
     OnGamePause,
     OnGameResume,
-    OnGameOver
+    OnGameOver,
+    OnLevelComplete
 }
