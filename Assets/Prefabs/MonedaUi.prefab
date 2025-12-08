@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2358559222250208119}
   - component: {fileID: 5232224567363440010}
   m_Layer: 5
-  m_Name: Moneda
+  m_Name: MonedaUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

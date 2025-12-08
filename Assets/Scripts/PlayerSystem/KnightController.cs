@@ -19,10 +19,12 @@ public class KnightController : MonoBehaviour
     [Header("Parametros de Movimiento")]
     public float runningSpeed = 5f;
     public float jumpForce = 5f;
-    
-    [Header("Layer de Suelo")]
-    public LayerMask groundLayer;
+    private bool _isPushing = false;
     [HideInInspector] public bool isGrabbingBox = false;
+    
+    [Header("Layers")]
+    public LayerMask groundLayer;
+    public LayerMask objectLayer;
 
     [Header("Audio SFX")]
     public AudioClip jumpSound;
@@ -109,6 +111,7 @@ public class KnightController : MonoBehaviour
             spriteRenderer.flipX = xInput < 0;
             float currentSpeed = runningSpeed;
             if (isGrabbingBox) currentSpeed = runningSpeed * 0.5f;
+            if (_isPushing) currentSpeed = runningSpeed * 0.5f;
             _rigidbody2D.linearVelocity = new Vector2(xInput * currentSpeed, _rigidbody2D.linearVelocity.y);
             animator.SetBool("isRunning", true);
         }
@@ -193,5 +196,33 @@ public class KnightController : MonoBehaviour
         if (!IsTouchingTheGround()) return;
         if(stepSound != null && _audioSource != null)
             _audioSource.PlayOneShot(stepSound);
-    }   
+    } 
+    
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if ((objectLayer.value & (1 << collision.gameObject.layer))>0)
+        {
+            // Verificamos si nos estamos moviendo hacia ella
+            // (Evita que se active la animación si solo estamos parados al lado)
+            float xInput = Input.GetAxisRaw("Horizontal");
+            
+            // Si hay input y estamos tocando la caja, es empuje
+            if (xInput != 0)
+            {
+                _isPushing = true;
+            }
+            else
+            {
+                _isPushing = false;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if ((objectLayer.value & (1 << collision.gameObject.layer))>0)
+        {
+            _isPushing = false;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Fruit : MonoBehaviour
 {
     public int points = 1;
 
@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
     {
         if ((playerLayer.value & (1 << other.gameObject.layer))>0)
         {
-            EventManager.Invoke<int>(GlobalEvents.OnAddCoins, points);
+            EventManager.Invoke<int>(GlobalEvents.OnAddFruits, points);
             gameObject.SetActive(false);
         }
     }

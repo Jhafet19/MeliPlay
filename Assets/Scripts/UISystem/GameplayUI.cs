@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameplayUI : MonoBehaviour
 {
     [Header("Configuración de Puntos")]
-    [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text fruitText;
 
     [Header("Configuración de Corazones")]
     [SerializeField] private RectTransform heartIconContainer;
@@ -25,8 +26,9 @@ public class GameplayUI : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.Subscribe<int>(GlobalEvents.OnScoreChanged, UpdateScore);
+        EventManager.Subscribe<int>(GlobalEvents.OnScoreCoinChanged, UpdateScoreCoin);
         EventManager.Subscribe<int>(GlobalEvents.OnPlayerHealthChanged, UpdateHearts);
+        EventManager.Subscribe<int>(GlobalEvents.OnScoreFruitChanged, UpdateScoreFruit);
         EventManager.Subscribe(GlobalEvents.OnGamePause, ShowPause);
         EventManager.Subscribe(GlobalEvents.OnGameResume, HidePause);
         EventManager.Subscribe(GlobalEvents.OnGameOver, ShowGameOver);
@@ -34,18 +36,14 @@ public class GameplayUI : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.Unsubscribe<int>(GlobalEvents.OnScoreChanged, UpdateScore);
+        EventManager.Unsubscribe<int>(GlobalEvents.OnScoreCoinChanged, UpdateScoreCoin);
         EventManager.Unsubscribe<int>(GlobalEvents.OnPlayerHealthChanged, UpdateHearts);
+        EventManager.Unsubscribe<int>(GlobalEvents.OnScoreFruitChanged, UpdateScoreFruit);
         EventManager.Unsubscribe(GlobalEvents.OnGamePause, ShowPause);
         EventManager.Unsubscribe(GlobalEvents.OnGameResume, HidePause);
         EventManager.Unsubscribe(GlobalEvents.OnGameOver, ShowGameOver);
     }
-
-    private void UpdateScore(int points)
-    {
-        scoreText.text = "x " + points;
-    }
-
+    
     private void InitializeHearts()
     {
         foreach (Transform child in heartIconContainer) Destroy(child.gameObject);
@@ -58,7 +56,7 @@ public class GameplayUI : MonoBehaviour
             instance.SetActive(true);
         }
     }
-
+    
     private void UpdateHearts(int currentHealth)
     {
         for (int i = 0; i < _heartIcons.Count; i++)
@@ -66,6 +64,17 @@ public class GameplayUI : MonoBehaviour
             _heartIcons[i].SetActive(i < currentHealth);
         }
     }
+
+    private void UpdateScoreCoin(int points)
+    {
+        coinText.text = "x " + points;
+    }
+    
+    private void UpdateScoreFruit(int points)
+    {
+        fruitText.text = "x " + points;
+    }
+    
     
     private void ShowPause()
     {
