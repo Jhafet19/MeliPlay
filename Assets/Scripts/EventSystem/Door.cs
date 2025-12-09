@@ -1,4 +1,5 @@
 using System;
+using SavingSystem;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -7,6 +8,7 @@ public class Door : MonoBehaviour
    public int myID = 1;
    public string nextLevelName = "Nivel_2"; // Escribe aquí el nombre EXACTO de tu escena
    private bool _isOpen = false;
+   private bool _playerIsInside = false;
    private Animator _animator;
    
    [Header("Imágenes")]
@@ -16,12 +18,25 @@ public class Door : MonoBehaviour
    [Header("Componentes")]
    public SpriteRenderer spriteRenderer;
    public LayerMask playerLayer;
-   private BoxCollider2D _collider; 
+   private BoxCollider2D _collider;
+   [SerializeField] private GameObject objectToActivate;
 
    private void Awake()
    {
       //_animator = GetComponent<Animator>();
       _collider = GetComponent<BoxCollider2D>();
+      if(objectToActivate != null)
+         objectToActivate.SetActive(false);
+   }
+
+   private void Update()
+   {
+      if(_isOpen && Input.GetKeyDown(KeyCode.W))
+      {
+         LoaderManager.LoadLevel("Nivel_2");
+         SaveLoadManager.SaveData();
+         EventManager.Invoke(GlobalEvents.OnLevelComplete, nextLevelName);
+      }
    }
    
    private void OnEnable()
@@ -58,12 +73,22 @@ public class Door : MonoBehaviour
    
    private void OnTriggerEnter2D(Collider2D other)
    {
-      Debug.Log("Algo tocó la puerta: " + other.name);
-      // Verifica si la puerta está abierta y si el objeto que entra en colisión es el jugador
-      if (_isOpen && (playerLayer.value & (1 << other.gameObject.layer)) > 0)
+      if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
       {
-         Debug.Log("¡Nivel Completado!");
-         EventManager.Invoke(GlobalEvents.OnLevelComplete, nextLevelName);
+         _playerIsInside = true;
+         if(_isOpen && objectToActivate != null)
+            objectToActivate.SetActive(true);
+      }
+   }
+   
+   private void OnTriggerExit2D(Collider2D other)
+   {
+      if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
+      {
+         _playerIsInside = false;
+            
+         if (objectToActivate != null)
+            objectToActivate.SetActive(false); // Ocultar texto
       }
    }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 // 1. Requerimos AudioSource para que suene
@@ -31,6 +32,11 @@ public class KnightController : MonoBehaviour
     public AudioClip stepSound;
     private AudioSource _audioSource; 
     
+    [Header("Respawn & VFX")]
+    private Vector3 _respawnPoint; // Aquí guardamos la posición segura
+    public float blinkDuration = 1f; // Cuánto tiempo parpadea
+    public int numberOfBlinks = 10;
+    
     public static KnightController Instance;
     
     private Rigidbody2D _rigidbody2D;
@@ -57,6 +63,7 @@ public class KnightController : MonoBehaviour
     void Start()
     {
         animator.SetBool("isDeath", false);
+        _respawnPoint = transform.position;
     }
 
     void Update()
@@ -202,11 +209,8 @@ public class KnightController : MonoBehaviour
     {
         if ((objectLayer.value & (1 << collision.gameObject.layer))>0)
         {
-            // Verificamos si nos estamos moviendo hacia ella
-            // (Evita que se active la animación si solo estamos parados al lado)
             float xInput = Input.GetAxisRaw("Horizontal");
             
-            // Si hay input y estamos tocando la caja, es empuje
             if (xInput != 0)
             {
                 _isPushing = true;
@@ -224,5 +228,30 @@ public class KnightController : MonoBehaviour
         {
             _isPushing = false;
         }
+    }
+    
+    public void UpdateCheckpoint(Vector3 newPos)
+    {
+        _respawnPoint = newPos;
+    }
+    
+    public void RespawnPlayer()
+    {
+        transform.position = _respawnPoint;
+        _rigidbody2D.linearVelocity = Vector2.zero;
+        StartCoroutine(BlinkEffect());
+    }
+    
+    private IEnumerator BlinkEffect()
+    {
+
+            for (int i = 0; i < numberOfBlinks; i++)
+            {
+                spriteRenderer.enabled = false;
+                yield return new WaitForSeconds(blinkDuration / (numberOfBlinks * 2));
+                spriteRenderer.enabled = true;
+                yield return new WaitForSeconds(blinkDuration / (numberOfBlinks * 2));
+            }
+        
     }
 }

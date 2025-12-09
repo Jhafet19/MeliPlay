@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class BootLoader : MonoBehaviour
 {
     private void Start()
     {
-        SceneManager.LoadScene("Menu");
+        LoaderManager.LoadLevel("Menu");
     }
 }

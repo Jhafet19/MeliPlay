@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameplayUI : MonoBehaviour
 {
@@ -17,11 +18,53 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject gameOverPanel;
     
+    [Header("Botones del Menú de Pausa")]
+    public Button btnResume;
+    public Button btnPauseExit;
+
+    [Header("Botones del Game Over")]
+    public Button btnRetry;
+    public Button btnGameOverExit;
+    
     private List<GameObject> _heartIcons = new();
 
     private void Awake()
     {
         InitializeHearts();
+    }
+    
+    private void Start()
+    {
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("¡No se encontró el GameManager! Asegúrate de iniciar desde la escena _boot.");
+            return;
+        }
+        
+        
+        if (btnResume != null)
+        {
+            btnResume.onClick.RemoveAllListeners(); 
+            btnResume.onClick.AddListener(() => GameManager.Instance.UI_ResumeGame());
+        }
+
+        if (btnPauseExit != null)
+        {
+            btnPauseExit.onClick.RemoveAllListeners();
+            btnPauseExit.onClick.AddListener(() => GameManager.Instance.UI_ReturnToMenu());
+        }
+
+        if (btnRetry != null)
+        {
+            btnRetry.onClick.RemoveAllListeners();
+            btnRetry.onClick.AddListener(() => GameManager.Instance.UI_RetryLevel());
+        }
+
+        if (btnGameOverExit != null)
+        {
+            btnGameOverExit.onClick.RemoveAllListeners();
+            btnGameOverExit.onClick.AddListener(() => GameManager.Instance.UI_ReturnToMenu());
+        }
     }
 
     private void OnEnable()

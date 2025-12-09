@@ -25,7 +25,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth = Mathf.Max(currentHealth - damage, 0);
-        Debug.Log("VIDA RESTANTE: " + currentHealth);
         if (hurtSound != null && _audioSource != null)
         {
             _audioSource.PlayOneShot(hurtSound);
