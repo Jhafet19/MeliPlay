@@ -341,7 +341,6 @@ GameObject:
   - component: {fileID: 672301855}
   - component: {fileID: 672301857}
   - component: {fileID: 672301856}
-  - component: {fileID: 672301858}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -407,20 +406,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672301854}
   m_CullTransparentMesh: 1
---- !u!114 &672301858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672301854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b10169a0d3e6a14ead884afb12725f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  gameScene: Nivel_1
-  creditsScene: Credits
 --- !u!1 &1009132264
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class Door : MonoBehaviour
    public int myID = 1;
    public string nextLevelName = "Nivel_2"; // Escribe aquí el nombre EXACTO de tu escena
    private bool _isOpen = false;
-   private bool _playerIsInside = false;
    private Animator _animator;
    
    [Header("Imágenes")]
@@ -75,7 +74,6 @@ public class Door : MonoBehaviour
    {
       if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
       {
-         _playerIsInside = true;
          if(_isOpen && objectToActivate != null)
             objectToActivate.SetActive(true);
       }
@@ -85,8 +83,6 @@ public class Door : MonoBehaviour
    {
       if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
       {
-         _playerIsInside = false;
-            
          if (objectToActivate != null)
             objectToActivate.SetActive(false); // Ocultar texto
       }
