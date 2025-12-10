@@ -117,6 +117,9 @@ public class GameManager : MonoBehaviour, IGameMachine
         if (CurrentGame is GameOverGame gameOverState)
         {
             gameOverState.Retry();
+        }else if (CurrentGame is PauseMenuGame pauseState)
+        {
+            pauseState.Retry();
         }
     }
 }
@@ -199,7 +202,14 @@ public class PlayGame : IGame
     
     public void OnVictory(string nextLevelName)
     {
-        _gm.ChangeState(new PlayGame(_gm, nextLevelName, isRetry: false));
+        if (nextLevelName == "Credits")
+        {
+            _gm.ChangeState(new CreditsGame(_gm, nextLevelName));
+        }
+        else
+        {
+            _gm.ChangeState(new PlayGame(_gm, nextLevelName, isRetry: false));
+        }
     }
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -219,7 +229,7 @@ public class PlayGame : IGame
         {
             KnightController.Instance.transform.position = startPos;
             KnightController.Instance.UpdateCheckpoint(startPos);
-            KnightController.Instance.RespawnPlayer(); 
+            KnightController.Instance.RespawnPlayer();
         }
     }
 }
@@ -258,6 +268,13 @@ public class PauseMenuGame : IGame
         _gm.ChangeState(new PlayGame(_gm, _sceneToLoad, isRetry: false));
     }
     
+    public void Retry()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(_sceneToLoad);
+        _gm.ChangeState(new PlayGame(_gm, _sceneToLoad, isRetry: true));
+    }
+    
 }
 
 public class GameOverGame : IGame
@@ -285,5 +302,32 @@ public class GameOverGame : IGame
     {
         SceneManager.LoadScene(_sceneToLoad); 
         _gm.ChangeState(new PlayGame(_gm, _sceneToLoad, isRetry: true));
+    }
+}
+
+public class CreditsGame : IGame
+{
+    private GameManager _gm;
+    private string _sceneToLoad;
+
+    public CreditsGame(GameManager gameManager, string sceneName)
+    {
+        _gm = gameManager;
+        _sceneToLoad = sceneName;
+    }
+
+    public void Enter()
+    {
+        _gm.PlayMusic(_gm.MenuMusic);
+        Time.timeScale = 1f;
+        LoaderManager.LoadLevel(_sceneToLoad);
+    }
+
+    public void Tick(float deltaTime)
+    {
+    }
+
+    public void Exit()
+    {
     }
 }

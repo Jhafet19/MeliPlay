@@ -20,6 +20,7 @@ public class GameplayUI : MonoBehaviour
     
     [Header("Botones del Menú de Pausa")]
     public Button btnResume;
+    public Button btnRetryPause;
     public Button btnPauseExit;
 
     [Header("Botones del Game Over")]
@@ -41,6 +42,11 @@ public class GameplayUI : MonoBehaviour
             return;
         }
         
+        if(btnRetryPause != null)
+        {
+            btnRetryPause.onClick.RemoveAllListeners();
+            btnRetryPause.onClick.AddListener(() => GameManager.Instance.UI_RetryLevel());
+        }
         
         if (btnResume != null)
         {
@@ -61,7 +67,7 @@ public class GameplayUI : MonoBehaviour
         }
 
         if (btnGameOverExit != null)
-        {
+            {
             btnGameOverExit.onClick.RemoveAllListeners();
             btnGameOverExit.onClick.AddListener(() => GameManager.Instance.UI_ReturnToMenu());
         }

@@ -33,8 +33,8 @@ public class KnightController : MonoBehaviour
     private AudioSource _audioSource; 
     
     [Header("Respawn & VFX")]
-    private Vector3 _respawnPoint; // Aquí guardamos la posición segura
-    public float blinkDuration = 1f; // Cuánto tiempo parpadea
+    private Vector3 _respawnPoint;
+    public float blinkDuration = 1f;
     public int numberOfBlinks = 10;
     
     public static KnightController Instance;
@@ -113,7 +113,7 @@ public class KnightController : MonoBehaviour
 
     void HandleNormalMovement(float xInput)
     {
-        if (xInput != 0)
+        if (xInput != 0 && GameManager.Instance.CurrentGame is PlayGame)
         {
             spriteRenderer.flipX = xInput < 0;
             float currentSpeed = runningSpeed;
@@ -131,7 +131,7 @@ public class KnightController : MonoBehaviour
 
     void HandleRollingMovement(float xInput)
     {
-        if (xInput != 0)
+        if (xInput != 0 && GameManager.Instance.CurrentGame is PlayGame)
         {
              spriteRenderer.flipX = xInput < 0;
             _rigidbody2D.linearVelocity = new Vector2(xInput * runningSpeed, _rigidbody2D.linearVelocity.y);
@@ -144,7 +144,7 @@ public class KnightController : MonoBehaviour
 
     void Jump()
     {
-        if (IsTouchingTheGround())
+        if (IsTouchingTheGround() && GameManager.Instance.CurrentGame is PlayGame)
         {
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             
@@ -204,31 +204,6 @@ public class KnightController : MonoBehaviour
         if(stepSound != null && _audioSource != null)
             _audioSource.PlayOneShot(stepSound);
     } 
-    
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if ((objectLayer.value & (1 << collision.gameObject.layer))>0)
-        {
-            float xInput = Input.GetAxisRaw("Horizontal");
-            
-            if (xInput != 0)
-            {
-                _isPushing = true;
-            }
-            else
-            {
-                _isPushing = false;
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if ((objectLayer.value & (1 << collision.gameObject.layer))>0)
-        {
-            _isPushing = false;
-        }
-    }
     
     public void UpdateCheckpoint(Vector3 newPos)
     {
