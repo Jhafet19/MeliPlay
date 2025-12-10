@@ -83,7 +83,6 @@ public class MovingPlatformCoroutine : MonoBehaviour
             if (waitAtPoint > 0f)
                 yield return new WaitForSeconds(waitAtPoint);
 
-            // Intercambia puntos
             var temp = from;
             from = to;
             to = temp;

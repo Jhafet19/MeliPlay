@@ -159,33 +159,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 4056178274462501118, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5436985838033387905, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1313884817674933963}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
 --- !u!4 &3743608029939340204 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 509072303977483932, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
   m_PrefabInstance: {fileID: 3810996615737826608}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &9193936921771613361 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5436985838033387905, guid: b274831e0bb76c24db84fa80bde19dbf, type: 3}
-  m_PrefabInstance: {fileID: 3810996615737826608}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1313884817674933963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9193936921771613361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b79470db5f452324aa430bd9b9dc301a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KnightAnimationEvents

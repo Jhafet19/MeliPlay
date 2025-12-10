@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 4459486759612274753}
   - component: {fileID: 392183575263218557}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: ExitGOBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -983,7 +983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7009570865198946588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1165,7 +1165,8 @@ MonoBehaviour:
   maxHearts: 3
   pausePanel: {fileID: 0}
   gameOverPanel: {fileID: 0}
-  btnResume: {fileID: 7377411161525113055}
+  btnResume: {fileID: 6321329890684666070}
+  btnRetryPause: {fileID: 7377411161525113055}
   btnPauseExit: {fileID: 4929260224117713439}
   btnRetry: {fileID: 3174660583019186935}
   btnGameOverExit: {fileID: 392183575263218557}
@@ -1243,7 +1244,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278190080
   m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1318,7 +1319,7 @@ GameObject:
   - component: {fileID: 2318888581171089037}
   - component: {fileID: 6321329890684666070}
   m_Layer: 5
-  m_Name: Try
+  m_Name: TryPauseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,9 +1340,9 @@ RectTransform:
   - {fileID: 6841206614294897939}
   m_Father: {fileID: 6490199580530837645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320.7909, y: -215.04993}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 205, y: 66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4926716257576132445
@@ -1439,7 +1440,7 @@ GameObject:
   - component: {fileID: 3058142724760318910}
   - component: {fileID: 7377411161525113055}
   m_Layer: 5
-  m_Name: Resume
+  m_Name: ResumePauseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,9 +1461,9 @@ RectTransform:
   - {fileID: 4866589333200669616}
   m_Father: {fileID: 6490199580530837645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320.7909, y: -381.04993}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 241, y: 66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &964555443851612105
@@ -1664,7 +1665,7 @@ GameObject:
   - component: {fileID: 6388151704847788980}
   - component: {fileID: 4929260224117713439}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: ExitPauseBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1685,9 +1686,9 @@ RectTransform:
   - {fileID: 8095551254119112639}
   m_Father: {fileID: 6490199580530837645}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320.7909, y: -541.5499}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 210, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7138955087095809674
@@ -1861,7 +1862,7 @@ GameObject:
   - component: {fileID: 7250932337609996915}
   - component: {fileID: 3174660583019186935}
   m_Layer: 5
-  m_Name: Resume
+  m_Name: ResumeGOBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
